@@ -38395,7 +38395,7 @@ var staticRenderFns = [
         _c("a", { attrs: { href: "/" } }, [
           _c("img", {
             staticClass: "header-nav__logo",
-            attrs: { src: "/public/images/header-logo.png" }
+            attrs: { src: "/images/header-logo.png" }
           })
         ])
       ]),
@@ -38843,7 +38843,7 @@ var staticRenderFns = [
       _c("h2", { staticClass: "home-quiz__introduction-h2" }, [
         _c("img", {
           staticClass: "home-quiz__introduction-h2-logo",
-          attrs: { src: "/public/images/what-is-mark.png" }
+          attrs: { src: "/images/what-is-mark.png" }
         }),
         _vm._v("4 Answers Quizとは?\n          ")
       ]),
@@ -38867,7 +38867,7 @@ var staticRenderFns = [
       _c("h2", { staticClass: "home-quiz__setting-h2" }, [
         _c("img", {
           staticClass: "home-quiz__setting-h2-logo",
-          attrs: { src: "/public/images/directory-icon.png" }
+          attrs: { src: "/images/directory-icon.png" }
         }),
         _vm._v("出題設定\n          ")
       ]),
@@ -38966,7 +38966,7 @@ var staticRenderFns = [
     return _c("h2", { staticClass: "home-quiz__ranking-h2" }, [
       _c("img", {
         staticClass: "home-quiz__ranking-h2-logo",
-        attrs: { src: "/public/images/graph-icon.png" }
+        attrs: { src: "/images/graph-icon.png" }
       }),
       _vm._v("ランキング\n          ")
     ])
@@ -39014,7 +39014,7 @@ var staticRenderFns = [
       _c("h2", { staticClass: "home__notice-h2" }, [
         _c("img", {
           staticClass: "home__notice-h2-logo",
-          attrs: { src: "/public/images/news-icon.png" }
+          attrs: { src: "/images/news-icon.png" }
         }),
         _vm._v("お知らせ情報\n          ")
       ])
