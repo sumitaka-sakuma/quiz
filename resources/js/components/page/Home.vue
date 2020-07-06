@@ -66,6 +66,10 @@
             <h2 class="home__notice-h2">
               <img class="home__notice-h2-logo" src="/images/news-icon.png" />お知らせ情報
             </h2>
+            <dl v-for="(info, index) in information" :key="index">
+              <dt>{{info.created_at}}</dt>
+              <dd>{{info.information}}</dd>
+            </dl>
           </section>
         </article>
         <the-sidebar></the-sidebar>
@@ -90,12 +94,18 @@ export default {
   },
   data() {
     return {
-      categories: [1] // categoriesのデフォルト値を設定します。ここでは[1]配列の1とします。
+      categories: [1] ,// categoriesのデフォルト値を設定
+      information :[]
     };
   },
+  mounted() {
+    this.$http.get("/api/information").then(response => {
+      this.information = response.data;
+    });
+  },
   methods: {
-    goQuiz() { // @click.stop.preventで設定したgoQuiz()をここで定義します
-      this.$router.push("/quiz?categories=" + this.categories); // this.$router.pushを使うことで、画面リロードすることなくURLを変更できます。
+    goQuiz() {
+      this.$router.push("/quiz?categories=" + this.categories); //画面リロードすることなくURLを変更する。
     }
   }
 };
