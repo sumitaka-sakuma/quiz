@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import router from './router.js'
+import axios from 'axios'
 import SocialSharing from 'vue-social-sharing'
+
+Vue.prototype.$http = axios;
 
 Vue.use(SocialSharing);
 
