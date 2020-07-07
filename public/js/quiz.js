@@ -195,6 +195,7 @@ __webpack_require__.r(__webpack_exports__);
       imageSrc: "",
       answers: [],
       commentary: "",
+      //問題の解説
       correctAnswerNo: 0,
       //正答の番号
       isCorrect: false,
@@ -207,6 +208,7 @@ __webpack_require__.r(__webpack_exports__);
       //クイズが終了したかどうか
       score: 0,
       quizNumber: 1,
+      //問題の番号
       categoryName: ""
     };
   },
@@ -220,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.findNextQuiz(0);
 
-      console.log(_this.quizData);
+      console.log(_this.quizData); //取得したクイズのデータを画面に表示する
     });
   },
   methods: {
@@ -255,9 +257,9 @@ __webpack_require__.r(__webpack_exports__);
       this.categoryName = this.quizData[quizNumber].category.name;
     },
     goNextQuiz: function goNextQuiz() {
-      // 次の問題へをクリック
+      // 次の問題へをクリック時に実行
       if (this.quizNumber >= 10) {
-        // 10問以上の場合はクイズを終了
+        // 10問以上の場合はクイズを終了する
         this.endQuiz();
       } else {
         // 次のクイズを表示し、クイズ番号を加算、alert-info、alert-danger、解説を非表示にする

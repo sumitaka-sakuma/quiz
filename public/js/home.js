@@ -233,6 +233,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     goQuiz: function goQuiz() {
+      //クイズを初める処理
       this.$router.push("/quiz?categories=" + this.categories); //画面リロードすることなくURLを変更する。
     }
   }

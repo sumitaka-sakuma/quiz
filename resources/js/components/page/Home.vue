@@ -95,6 +95,7 @@ export default {
   },
   methods: {
     goQuiz() {
+      //クイズを初める処理
       this.$router.push("/quiz?categories=" + this.categories); //画面リロードすることなくURLを変更する。
     }
   }

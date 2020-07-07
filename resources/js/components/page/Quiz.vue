@@ -97,14 +97,14 @@ export default {
       title: "",
       imageSrc: "",
       answers: [],
-      commentary: "",
+      commentary: "", //問題の解説
       correctAnswerNo: 0, //正答の番号
       isCorrect: false, //正解かどうか
       isMistake: false, //間違いかどうか
       isAlreadyAnswered: false, //回答済みかどうか
       isQuizFinish: false, //クイズが終了したかどうか
       score: 0,
-      quizNumber: 1,
+      quizNumber: 1, //問題の番号
       categoryName: "",
     };
   },
@@ -113,7 +113,7 @@ export default {
     this.$http.get(`/api/quiz?categories=${categories}`).then(response => {
       this.quizData = response.data;
       this.findNextQuiz(0);
-      console.log(this.quizData);
+      console.log(this.quizData);//取得したクイズのデータを画面に表示する
     });
   },
   methods: {
@@ -153,9 +153,9 @@ export default {
       this.categoryName = this.quizData[quizNumber].category.name;
     },
     goNextQuiz() {
-      // 次の問題へをクリック
+      // 次の問題へをクリック時に実行
       if (this.quizNumber >= 10) {
-        // 10問以上の場合はクイズを終了
+        // 10問以上の場合はクイズを終了する
         this.endQuiz();
       } else {
         // 次のクイズを表示し、クイズ番号を加算、alert-info、alert-danger、解説を非表示にする
