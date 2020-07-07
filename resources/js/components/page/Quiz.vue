@@ -141,6 +141,7 @@ export default {
       }
     },
     findNextQuiz(quizNumber) {
+      //引数に渡された値の配列の番号を元にクイズの各情報を設定する
       this.title = this.quizData[quizNumber].title;
       this.answers = [
         this.quizData[quizNumber].answer.answer_1,
@@ -167,6 +168,7 @@ export default {
       }
     },
     endQuiz() {
+      //クイズを終了する
       this.isQuizFinish = true;
       this.answerNo = "-";
       this.isAlreadyAnswered = true;

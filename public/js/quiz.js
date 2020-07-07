@@ -250,6 +250,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     findNextQuiz: function findNextQuiz(quizNumber) {
+      //引数に渡された値の配列の番号を元にクイズの各情報を設定する
       this.title = this.quizData[quizNumber].title;
       this.answers = [this.quizData[quizNumber].answer.answer_1, this.quizData[quizNumber].answer.answer_2, this.quizData[quizNumber].answer.answer_3, this.quizData[quizNumber].answer.answer_4];
       this.commentary = this.quizData[quizNumber].answer.commentary;
@@ -271,6 +272,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     endQuiz: function endQuiz() {
+      //クイズを終了する
       this.isQuizFinish = true;
       this.answerNo = "-";
       this.isAlreadyAnswered = true;
