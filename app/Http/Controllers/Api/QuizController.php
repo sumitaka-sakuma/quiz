@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Quiz;
@@ -17,8 +18,8 @@ class QuizController extends Controller
     }
 
     $quiz = Quiz::with(['answer', 'category']) // withで関連するテーブルや子テーブルを取得する  
-      ->wherein('quizzes.categories_id', $category)
-      ->inRandomOrder()
+      ->wherein('quizzes.categories_id', $category) //
+      ->inRandomOrder() //取り出したカラムの順番をランダムに入れ替える
       ->limit(10)
       ->get();
 
