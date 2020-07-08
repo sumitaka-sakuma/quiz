@@ -2,6 +2,10 @@ import Vue from 'vue'
 import router from './router.js'
 import axios from 'axios'
 import SocialSharing from 'vue-social-sharing'
+import jQuery from "jquery";
+
+window.$ = window.jQuery = jQuery;
+require('bootstrap');
 
 Vue.prototype.$http = axios;
 

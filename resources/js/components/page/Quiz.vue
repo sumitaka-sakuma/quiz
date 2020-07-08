@@ -76,6 +76,7 @@
       </div>
     </main>
   <the-footer></the-footer>
+  <the-modal :correctPercentageObject="correctPercentageObject" ref="modal" ></the-modal>
   </div>
 </template>
 
@@ -83,12 +84,14 @@
 import TheHeader from "../layout/TheHeader";
 import TheFooter from "../layout/TheFooter";
 import TheSidebar from "../layout/TheSidebar";
+import TheModal from "../module/TheModal";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
     TheSidebar,
+    TheModal,
   },
   data() {
     return {
@@ -106,6 +109,7 @@ export default {
       score: 0,
       quizNumber: 1, //問題の番号
       categoryName: "",
+      correctPercentageObject: {}, //正答率
     };
   },
   mounted() {
@@ -168,11 +172,20 @@ export default {
       }
     },
     endQuiz() {
-      //クイズを終了する
+      //クイズを終了し、得点を計算する
       this.isQuizFinish = true;
       this.answerNo = "-";
       this.isAlreadyAnswered = true;
+
+      this.correctPercentageObject = {
+        correctScore: this.score,
+        mistakeScore: 10 - this.score
+      };
     },
+    showResult() {
+      //モーダルでクイズの結果を表示する
+      this.$refs.modal.render();
+    }
   }
 };
 </script>
