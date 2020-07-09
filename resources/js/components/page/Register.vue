@@ -8,7 +8,7 @@
               <div class="panel-heading text-center">ユーザー登録</div>
 
               <div class="panel-body">
-                <form
+                <ValidationObserver
                   class="form-horizontal"
                   ref="observer"
                   action="/register"
@@ -20,7 +20,10 @@
                     <label for="name" class="col-md-4 control-label">名前</label>
 
                     <div class="col-md-6">
-                      <input v-model="name" name="name" type="text" class="form-control" />
+                      <validation-provider name="名前" rules="required|max:20" v-slot="{ errors }">
+                        <input v-model="name" name="name" type="text" class="form-control" />
+                        <div class="alert alert-danger" v-show="errors[0]">{{ errors[0] }}</div>
+                      </validation-provider>
                     </div>
                   </div>
 
@@ -28,7 +31,15 @@
                     <label for="email" class="col-md-4 control-label">メールアドレス</label>
 
                     <div class="col-md-6">
+                      
+                      <validation-provider
+                        name="メールアドレス"
+                        rules="required|email"
+                        v-slot="{ errors }"
+                      >
                       <input v-model="email" name="email" type="email" class="form-control" />
+                      <div class="alert alert-danger" v-show="errors[0]">{{ errors[0] }}</div>
+                      </validation-provider>
                     </div>
                   </div>
 
@@ -36,12 +47,20 @@
                     <label for="password" class="col-md-4 control-label">パスワード</label>
 
                     <div class="col-md-6">
+
+                     <validation-provider
+                        name="パスワード"
+                        rules="required|min:8|confirmed:password_confirmation"
+                        v-slot="{ errors }"
+                      >
                       <input
                         v-model="password"
                         name="password"
                         type="password"
                         class="form-control"
                       />
+                      <div class="alert alert-danger" v-show="errors[0]">{{ errors[0] }}</div>
+                      </validation-provider>
                     </div>
                   </div>
 
@@ -49,12 +68,21 @@
                     <label for="password-confirm" class="col-md-4 control-label">パスワード再確認</label>
 
                     <div class="col-md-6">
+                    
+                     <validation-provider
+                        name="パスワード再確認"
+                        rules="required|min:8"
+                        vid="password_confirmation"
+                        v-slot="{ errors }"
+                      >
                       <input
                         v-model="password_confirmation"
                         name="password_confirmation"
                         type="password"
                         class="form-control"
                       />
+                      <div class="alert alert-danger" v-show="errors[0]">{{ errors[0] }}</div>
+                      </validation-provider>
                     </div>
                   </div>
 
@@ -63,7 +91,7 @@
                       <button type="submit" class="btn btn-primary">登録</button>
                     </div>
                   </div>
-                </form>
+                </ValidationObserver>
               </div>
             </div>
           </div>
@@ -74,14 +102,42 @@
 </template>
 
 <script>
+
+import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
+import { required, max, min, email, confirmed } from "vee-validate/dist/rules"; 
+extend("required", {
+  ...required,
+  message: "{_field_}は必須です"
+});
+extend("email", {
+  ...email,
+  message: "{_field_}はメールアドレス形式で入力してください"
+});
+extend("min", {
+  ...min,
+  message: "{_field_}は最低でも{length}文字入力してください"
+});
+extend("max", {
+  ...max,
+  message: "{_field_}は最大でも{length}文字までです"
+});
+extend("confirmed", {
+  ...confirmed,
+  message: "再確認パスワードと入力が一致していません"
+});
+
 export default {
-  data() {
-    return {
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: ""
-    };
-  }
+    components: {
+        ValidationProvider,
+        ValidationObserver
+    },
+    data() {
+        return {
+            name: "",
+            email: "",
+            password: "",
+            password_confirmation: ""
+        };
+    }
 };
 </script>
