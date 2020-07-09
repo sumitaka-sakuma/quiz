@@ -7,3 +7,7 @@ Route::get('/', function () {
 Route::get('/quiz', function () {
     return view('quiz.index');
 });
+
+Route::get('/register', function () {
+    return view('auth.register.index');
+});
