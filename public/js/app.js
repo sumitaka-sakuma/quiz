@@ -58894,7 +58894,7 @@ var render = function() {
                         ),
                         _vm._l(_vm.errors, function(error, key, index) {
                           return _c("div", { key: index }, [
-                            _vm._v(_vm._s(key) + ":" + _vm._s(error))
+                            _vm._v(_vm._s(error))
                           ])
                         })
                       ],
