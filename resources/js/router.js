@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './components/page/Home'
 import Quiz from './components/page/Quiz'
+import Login from './components/page/Login'
 import Register from './components/page/Register'
 
 Vue.use(Router)
@@ -18,6 +19,11 @@ export default new Router({
       path: '/quiz',
       name: 'quiz',
       component: Quiz // URL「/quiz」に対してQuizコンポーネントを使う
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login //URL[/login]に対してloginコンポーネントを使う
     },
     {
       path: '/register',
