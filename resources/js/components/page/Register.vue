@@ -6,7 +6,12 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
               <div class="panel-heading text-center">ユーザー登録</div>
-
+              <div class="form-group has-error" v-if="errors.length !== 0">
+                <div class="alert alert-danger text-center">
+                  ユーザー登録実行時にエラーが発生しました
+                  <div v-for="(error, key, index) in errors" :key="index">{{key}}:{{error}}</div>
+                </div>
+              </div>
               <div class="panel-body">
                 <ValidationObserver
                   class="form-horizontal"
@@ -144,6 +149,11 @@ export default {
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
     };
+  },
+  props: {
+    errors: {
+      type: Array | Object
+    }
   },
   methods: {
     async register() {
