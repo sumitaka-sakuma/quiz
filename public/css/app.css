@@ -4604,6 +4604,7 @@ header .header-nav__logo {
 
 header-nav__drop-down {
   background: #6f7882;
+  color: #000;
 }
 
 header #header-nav__home {
