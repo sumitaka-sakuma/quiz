@@ -24,8 +24,7 @@ header {
     }
 
     &-nav__drop-down {
-      background: $gray;
-      color: $white;
+      background-color: $thin-gray;
     }
   
     #header {
@@ -44,6 +43,10 @@ header {
 
         &__name {
           color: $white;
+        }
+
+        &__dropdown {
+          background-color: $thin-gray;
         }
 
         &__mypage {

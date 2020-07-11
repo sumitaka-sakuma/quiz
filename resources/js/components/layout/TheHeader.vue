@@ -44,7 +44,7 @@
                 {{auth.name}}
                 <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu header-nav__drop-down" role="menu">
+              <ul class="dropdown-menu header-nav__drop-down" id = "header-nav__dropdown" role="menu">
                 <li>
                   <router-link class="navbar-brand" id="header-nav__mypage" to="/mypage">マイページ</router-link>
                   <a class="navbar-brand" id="header-nav__logout" @click="logout">ログアウト</a>

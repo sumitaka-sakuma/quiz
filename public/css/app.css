@@ -4603,8 +4603,7 @@ header .header-nav__logo {
 }
 
 header-nav__drop-down {
-  background: #C2CBD3;
-  color: #fff;
+  background-color: #6f7882;
 }
 
 header #header-nav__home {
@@ -4621,6 +4620,10 @@ header #header-nav__register {
 
 header #header-nav__name {
   color: #fff;
+}
+
+header #header-nav__dropdown {
+  background-color: #6f7882;
 }
 
 header #header-nav__mypage {

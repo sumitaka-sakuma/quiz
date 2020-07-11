@@ -58157,7 +58157,7 @@ var render = function() {
                       "ul",
                       {
                         staticClass: "dropdown-menu header-nav__drop-down",
-                        attrs: { role: "menu" }
+                        attrs: { id: "header-nav__dropdown", role: "menu" }
                       },
                       [
                         _c(
