@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     render() {
+      //正解と不正解の数を集計する
       this.$set(this.chartData, "datasets", [
         {
           backgroundColor: ["#00D8FF", "#E46651"],
@@ -77,10 +78,6 @@ export default {
     quizFinish() {
       location.href = "/";
     },
-    //correctPercentage() {
-      //this.correctPercentage = this.correctPercentageObject["correctScore"] * 10
-      //return this.correctPercentage
-    //}
   }
 };
 </script>

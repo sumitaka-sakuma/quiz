@@ -198,11 +198,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     quizFinish: function quizFinish() {
       location.href = "/";
-    } //correctPercentage() {
-    //this.correctPercentage = this.correctPercentageObject["correctScore"] * 10
-    //return this.correctPercentage
-    //}
-
+    }
   }
 });
 
