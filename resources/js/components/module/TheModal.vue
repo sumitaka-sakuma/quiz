@@ -12,6 +12,19 @@
           <div class="modal-body text-center">
             <pie-chart :chartData="chartData" ref="chart"></pie-chart>
             <div>正解率 {{ correctPercentageObject['correctScore'] * 10 }} %</div>
+            <div class="text-center" v-if="correctPercentageObject['correctScore'] * 10 == 100">
+              おめでとうございます！！満点です。<br>
+              この調子で勉強を続けていきましょう！！
+            </div>
+            <div class="text-center" v-else-if="correctPercentageObject['correctScore'] * 10 >= 80">
+              いい調子ですね。このまま満点目指して頑張りましょう！！
+            </div>
+            <div class="text-center" v-else-if="correctPercentageObject['correctScore'] * 10 >=  50">
+              まずまずですね。苦手箇所を復習しておきましょう。
+            </div>
+            <div class="text-center" v-else >
+              勉強不足です。もっと頑張りましょう。
+            </div>
             <input type="hidden" name="correctRatio" />
           </div>
           <div class="modal-footer">
@@ -55,7 +68,7 @@ export default {
           backgroundColor: ["#00D8FF", "#E46651"],
           data: [
             this.correctPercentageObject["correctScore"],
-            this.correctPercentageObject["mistakeScore"]
+            this.correctPercentageObject["mistakeScore"],
           ]
         }
       ]);
@@ -63,7 +76,11 @@ export default {
     },
     quizFinish() {
       location.href = "/";
-    }
+    },
+    //correctPercentage() {
+      //this.correctPercentage = this.correctPercentageObject["correctScore"] * 10
+      //return this.correctPercentage
+    //}
   }
 };
 </script>

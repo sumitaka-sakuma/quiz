@@ -152,6 +152,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -185,7 +198,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     quizFinish: function quizFinish() {
       location.href = "/";
-    }
+    } //correctPercentage() {
+    //this.correctPercentage = this.correctPercentageObject["correctScore"] * 10
+    //return this.correctPercentage
+    //}
+
   }
 });
 
@@ -38743,6 +38760,34 @@ var render = function() {
                       " %"
                   )
                 ]),
+                _vm._v(" "),
+                _vm.correctPercentageObject["correctScore"] * 10 == 100
+                  ? _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            おめでとうございます！！満点です。"
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n            この調子で勉強を続けていきましょう！！\n          "
+                      )
+                    ])
+                  : _vm.correctPercentageObject["correctScore"] * 10 >= 80
+                  ? _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            いい調子ですね。このまま満点目指して頑張りましょう！！\n          "
+                      )
+                    ])
+                  : _vm.correctPercentageObject["correctScore"] * 10 >= 50
+                  ? _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            まずまずですね。苦手箇所を復習しておきましょう。\n          "
+                      )
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            勉強不足です。もっと頑張りましょう。\n          "
+                      )
+                    ]),
                 _vm._v(" "),
                 _c("input", { attrs: { type: "hidden", name: "correctRatio" } })
               ],
