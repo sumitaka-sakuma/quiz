@@ -4855,3 +4855,11 @@ article {
   padding: 20px 20px;
 }
 
+.mypage-h2 {
+  border-bottom: solid;
+}
+
+.mypage__logo {
+  width: 10%;
+}
+
