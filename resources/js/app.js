@@ -3,6 +3,7 @@ import router from './router.js'
 import axios from 'axios'
 import SocialSharing from 'vue-social-sharing'
 import jQuery from "jquery";
+import Notifications from 'vue-notification'
 import MainPage from './components/page/MainPage'
 
 window.$ = window.jQuery = jQuery;
@@ -15,6 +16,8 @@ axios.defaults.headers.common['Authorization'] = "Bearer " + document
   .getAttribute("content");
 
 Vue.use(SocialSharing);
+
+Vue.use(Notifications);
 
 new Vue({
   router: router, // routerにはrouter.jsファイルを設定する
