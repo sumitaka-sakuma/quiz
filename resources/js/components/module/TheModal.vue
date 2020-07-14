@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form action="/insertRanking" method="POST" id="finish-form">
     <div id="modal-result" tabindex="-1" class="modal fade" aria-hidden="true" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -12,7 +12,9 @@
           <div class="modal-body text-center">
             <pie-chart :chartData="chartData" ref="chart"></pie-chart>
             <div>正解率 {{ correctPercentageObject['correctScore'] * 10 }} %</div>
-            <div class="text-center" v-if="correctPercentageObject['correctScore'] * 10 == 100">
+            <input type="hidden" name="correctRatio" :value=" correctPercentageObject['correctScore'] * 10 " />
+            <input type="hidden" name="_token" :value="csrf" />
+            <!-- <div class="text-center" v-if="correctPercentageObject['correctScore'] * 10 == 100">
               おめでとうございます！！満点です。<br>
               この調子で勉強を続けていきましょう！！
             </div>
@@ -24,7 +26,7 @@
             </div>
             <div class="text-center" v-else >
               勉強不足です。もっと頑張りましょう。
-            </div>
+            </div> -->
             <input type="hidden" name="correctRatio" />
           </div>
           <div class="modal-footer">
@@ -33,7 +35,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -59,6 +61,10 @@ export default {
         labels: ["正解", "不正解"],
         datasets: []
       },
+      
+      csrf: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content")
     };
   },
   methods: {
@@ -76,7 +82,7 @@ export default {
       this.$refs.chart.renderPieChart();
     },
     quizFinish() {
-      location.href = "/";
+      document.querySelector("#finish-form").submit();
     },
   }
 };
