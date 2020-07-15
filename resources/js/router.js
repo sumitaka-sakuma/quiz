@@ -8,7 +8,7 @@ import Mypage from './components/page/Mypage'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history', 
   routes: [
     {
@@ -34,7 +34,40 @@ export default new Router({
     {
       path: '/mypage',
       name: 'mypage',
-      component: Mypage, // // URL「/mypage」に対してMyPageコンポーネントを使う
+      component: Mypage, // URL「/mypage」に対してMyPageコンポーネントを使う
+
+      meta: {
+        requiresAuth: true // /mypageに対してのみ認証を必須とする
+      }
     },
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  //マイページ画面にアクセスするユーザーが未認証であればマイページが見れなくなり、
+  //認証中であればnext()を呼び出しマイページ画面に遷移する。
+  if (to.matched.some(rec => rec.meta.requiresAuth)) {
+    router.app.$http.get("/api/user").then(response => {
+      const user = response.data;
+      if (user) {
+        next() //次の画面を表示する
+      } else {
+        next({
+          path: '/login',
+        })
+      }
+    }).catch(error => {
+      if (error.response.status === 401) {
+        alert("未認証のユーザーのためログイン画面でログインを行ってください");
+      } else {
+        alert("予期しないエラーが発生しました。再度ログインを行ってください");
+      }
+      next({
+        path: '/login',
+      })
+    });
+  } else {
+    next() //次の画面を表示する
+  }
 })
+export default router

@@ -77397,7 +77397,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -77422,10 +77422,46 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/mypage',
     name: 'mypage',
-    component: _components_page_Mypage__WEBPACK_IMPORTED_MODULE_6__["default"] // // URL「/mypage」に対してMyPageコンポーネントを使う
+    component: _components_page_Mypage__WEBPACK_IMPORTED_MODULE_6__["default"],
+    // URL「/mypage」に対してMyPageコンポーネントを使う
+    meta: {
+      requiresAuth: true // /mypageに対してのみ認証を必須とする
 
+    }
   }]
-}));
+});
+router.beforeEach(function (to, from, next) {
+  //マイページ画面にアクセスするユーザーが未認証であればマイページが見れなくなり、
+  //認証中であればnext()を呼び出しマイページ画面に遷移する。
+  if (to.matched.some(function (rec) {
+    return rec.meta.requiresAuth;
+  })) {
+    router.app.$http.get("/api/user").then(function (response) {
+      var user = response.data;
+
+      if (user) {
+        next(); //次の画面を表示する
+      } else {
+        next({
+          path: '/login'
+        });
+      }
+    })["catch"](function (error) {
+      if (error.response.status === 401) {
+        alert("未認証のユーザーのためログイン画面でログインを行ってください");
+      } else {
+        alert("予期しないエラーが発生しました。再度ログインを行ってください");
+      }
+
+      next({
+        path: '/login'
+      });
+    });
+  } else {
+    next(); //次の画面を表示する
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 
