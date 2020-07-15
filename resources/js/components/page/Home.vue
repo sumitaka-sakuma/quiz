@@ -20,8 +20,8 @@
               </label>
               <div class>
                 全項目チェック
-                <button type="button" name="check_all" id="check-all" value="1">ON</button>
-                <button type="button" name="check_all_off" id="check-all-off" value="1">OFF</button>
+                <button type="button" @click="checkAll">ON</button>
+                <button type="button" @click="checkAllOff">OFF</button>
               </div>
               <button type="submit" class="btn btn-primary" @click.stop.prevent="goQuiz()">出題開始</button>
               <input type="hidden" name="_token" value />
@@ -108,9 +108,21 @@ export default {
       this.displayNotification("会員登録しました", "success");
       this.resetReferrer();
     }
-    
+
   },
   methods: {
+    checkAll() {
+      //全項目チェックをONにしたときの処理
+      let val = [];
+      this.category.forEach(element => {
+        val.push(element.id);
+      });
+      this.categories = val;
+    },
+    checkAllOff() {
+      //全項目チェックをオフにしたときの処理
+      this.categories = [];
+    },
     goQuiz() {
       //クイズを初める処理
       this.$router.push("/quiz?categories=" + this.categories); //画面リロードすることなくURLを変更する。

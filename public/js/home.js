@@ -246,6 +246,18 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    checkAll: function checkAll() {
+      //全項目チェックをONにしたときの処理
+      var val = [];
+      this.category.forEach(function (element) {
+        val.push(element.id);
+      });
+      this.categories = val;
+    },
+    checkAllOff: function checkAllOff() {
+      //全項目チェックをオフにしたときの処理
+      this.categories = [];
+    },
     goQuiz: function goQuiz() {
       //クイズを初める処理
       this.$router.push("/quiz?categories=" + this.categories); //画面リロードすることなくURLを変更する。
@@ -38681,7 +38693,26 @@ var render = function() {
                       ])
                     }),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _c("div", {}, [
+                      _vm._v("\n              全項目チェック\n              "),
+                      _c(
+                        "button",
+                        {
+                          attrs: { type: "button" },
+                          on: { click: _vm.checkAll }
+                        },
+                        [_vm._v("ON")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          attrs: { type: "button" },
+                          on: { click: _vm.checkAllOff }
+                        },
+                        [_vm._v("OFF")]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -38708,7 +38739,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("section", { staticClass: "home-quiz__ranking" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", [
                   _c("label", [
@@ -38829,7 +38860,7 @@ var render = function() {
                 "section",
                 { staticClass: "home__notice" },
                 [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _vm._l(_vm.information, function(info, index) {
                     return _c("dl", { key: index }, [
@@ -38889,39 +38920,6 @@ var staticRenderFns = [
         attrs: { src: "/images/directory-icon.png" }
       }),
       _vm._v("出題設定\n          ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _vm._v("\n              全項目チェック\n              "),
-      _c(
-        "button",
-        {
-          attrs: {
-            type: "button",
-            name: "check_all",
-            id: "check-all",
-            value: "1"
-          }
-        },
-        [_vm._v("ON")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          attrs: {
-            type: "button",
-            name: "check_all_off",
-            id: "check-all-off",
-            value: "1"
-          }
-        },
-        [_vm._v("OFF")]
-      )
     ])
   },
   function() {
