@@ -143,6 +143,9 @@ export default {
     },
     findNextQuiz(quizNumber) {
       //引数に渡された値の配列の番号を元にクイズの各情報を設定する
+
+      window.scroll(0, 0); //次の問題の初期表示が(0,0)になる
+
       this.title = this.quizData[quizNumber].title;
       this.answers = [
         this.quizData[quizNumber].answer.answer_1,
