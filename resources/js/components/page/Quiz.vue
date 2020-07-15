@@ -108,9 +108,12 @@ export default {
   },
   mounted() {
     const categories = this.$route.query.categories; //QueryStringを取得
+    const loader = this.$loading.show(); 
+
     this.$http.get(`/api/quiz?categories=${categories}`).then(response => {
       this.quizData = response.data;
       this.findNextQuiz(0);
+      loader.hide();
       console.log(this.quizData);//取得したクイズのデータを画面に表示する
     });
   },
