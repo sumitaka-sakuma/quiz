@@ -6,13 +6,13 @@
           <section>
             <h2 class="keyword-h2">
               <img class="keyword__logo" src="images/search-mark.png" />
-              【{{ }}】からはじまるキーワード（{{ }}語)
+              【{{ initial}}】からはじまるキーワード（{{ keyword.length     }}語)
             </h2>
-            <dl>
-              <dt>{{ }}</dt>
+            <dl v-for="(key, index) in keyword" :key="index">
+              <dt>{{ key.keyword}}</dt>
               <dd class="keyword__description">
-                {{ }}
-                <p class="text-right">カテゴリー：{{ }}</p>
+                {{ key.description }}
+                <p class="text-right">カテゴリー：{{ key.category.name}}</p>
               </dd>
             </dl>
           </section>
@@ -30,5 +30,18 @@ export default {
   components: {
     TheSidebar,
   },
+  data() {
+    return {
+      keyword: [],
+      initial : '',
+    }
+  },
+  mounted() {
+    const initial = this.$route.query.initial;
+    this.initial = initial;
+    this.$http.get(`/api/keyword?initial=${initial}`).then(response => {
+      this.keyword = response.data;
+    });
+  }
 }
 </script>
