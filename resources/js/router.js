@@ -5,6 +5,7 @@ import Quiz from './components/page/Quiz'
 import Login from './components/page/Login'
 import Register from './components/page/Register'
 import Mypage from './components/page/Mypage'
+import Keyword from './components/page/Keyword'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const router = new Router({
       meta: {
         requiresAuth: true // /mypageに対してのみ認証を必須とする
       }
+    },
+    {
+      path: '/keyword',
+      name: 'keyword',
+      component: Keyword // URL「/keyword」に対してKeywordコンポーネントを使う
     },
   ]
 });
