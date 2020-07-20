@@ -21,4 +21,6 @@ Route::group([
 
     $router->resource('/quizzes', QuizController::class);
 
+    $router->resource('/keywords', KeywordController::class);
+
 });
