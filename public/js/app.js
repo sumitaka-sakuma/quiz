@@ -2439,10 +2439,24 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var initial = this.$route.query.initial;
-    this.initial = initial;
+    this.setKeyword(this.initial);
     this.$http.get("/api/keyword?initial=".concat(initial)).then(function (response) {
       _this.keyword = response.data;
     });
+  },
+  methods: {
+    setkeyword: function setkeyword() {
+      var _this2 = this;
+
+      this.$http.get("/api/keyword?initial=".concat(this.initial)).then(function (response) {
+        _this2.keyword = response.data;
+      });
+    }
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    next();
+    this.initial = this.$route.query.initial;
+    this.setkeyword(this.initial);
   }
 });
 
