@@ -31,7 +31,7 @@ class KeywordController extends AdminController
         $grid->column('initial', __('Initial'));
         $grid->column('keyword', __('Keyword'));
         $grid->column('description', __('Description'));
-        $grid->column('categories.name', __('Categories name'));
+        $grid->column('category.name', __('Categories name'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -52,9 +52,13 @@ class KeywordController extends AdminController
         $show->field('initial', __('Initial'));
         $show->field('keyword', __('Keyword'));
         $show->field('description', __('Description'));
-        $show->field('categories_id', __('Categories id'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
+
+        $show->category('Category information', function ($category) {
+            $category->name();
+        });
+
 
         return $show;
     }
@@ -71,7 +75,10 @@ class KeywordController extends AdminController
         $form->text('initial', __('Initial'));
         $form->text('keyword', __('Keyword'));
         $form->textarea('description', __('Description'));
-        $form->number('categories_id', __('Categories id'));
+        
+        $form->select('categories_id', 'カテゴリー')->options(function () {
+            return (new Category)->findCategorySelectBoxInAdmin();
+        })->rules('required');
 
         return $form;
     }
